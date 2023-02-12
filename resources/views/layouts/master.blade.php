@@ -1,6 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-21YBHJZTW5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'G-21YBHJZTW5');
+    </script>
 	<meta charset="utf-8" />
 	<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/img/apple-icon.png') }}">
 	<link rel="icon" type="image/png" sizes="96x96" href="{{ asset('/img/favicon.png') }}">
@@ -62,7 +70,7 @@
             <div class="logo">
                 <a href="{{ route('main') }}" class="simple-text">
                     EPSI
-                </a>
+                </a> 
             </div>
 
             <ul class="nav">
@@ -161,10 +169,8 @@
 
     <!-- CKEditor -->
 	<script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
-
+    <!-- Google tag (gtag.js) -->
     <script>
-    
-
     // Notification
     @if(session()->has('success'))
     swal({
