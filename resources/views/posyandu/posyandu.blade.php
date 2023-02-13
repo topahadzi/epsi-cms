@@ -98,8 +98,8 @@ $(document).ready(function() {
                 "mRender": function (data, type, row) {
                     let edit = `{{ url('/posyandu_edit/${data}') }}`;
                     // let dlt = `{{ url('/posyandu_delete/${data}') }}`;
-                    return `<a href="${edit}" class="btn btn-warning active" style="border-radius:0;"><i class="fas fa-pencil-alt"></i></a>`;
-                    // `<button class="btn btn-danger active delete-data" data-id=${data} style="border-radius:0;"><i class="fas fa-trash-alt"></i></button>`;
+                    return `<a href="${edit}" class="btn btn-warning active" style="border-radius:0;"><i class="fas fa-pencil-alt"></i></a>`+
+                    `<button class="btn btn-danger active delete-data" data-id=${data} style="border-radius:0;"><i class="fas fa-trash-alt"></i></button>`;
                 }
             }
         ]
