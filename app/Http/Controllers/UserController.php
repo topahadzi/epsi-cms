@@ -72,7 +72,6 @@ class UserController extends Controller
     }
 
     public function create(Request $req){
-
         $req->validate([
             'name' => 'required',
             'email' => 'required',
@@ -117,8 +116,7 @@ class UserController extends Controller
         ])->getBody()->getContents();
 
         $res = json_decode($response, true);
-
-        if ($res['msg'] === "Success Update") {
+        if ($res['msg'] === "Success Register") {
             return redirect('/user')->with("success","Tambah User");
         } elseif ($res['msg'] === "User sudah Ada") {
             return redirect()->back()->with("error","Menambah User, Karena Sudah Ada");
