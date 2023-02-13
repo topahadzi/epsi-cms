@@ -11,7 +11,7 @@
     </li>
     <li class="active">
         <a href="{{ route('berita') }}">
-            <i class="fas fa-train"></i>
+            <i class="fas fa-newspaper"></i>
             <p>Berita</p>
         </a>
     </li>

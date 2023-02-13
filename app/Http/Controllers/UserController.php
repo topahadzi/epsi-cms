@@ -13,20 +13,20 @@ class UserController extends Controller
         $response = Http::post(config("app.api_url")."signin", [
             'email' => $req['email'],
             'password' => $req['password'],
-        ])->json();        
-
-        if (!$response['user']['verifikasi']) {
-            return redirect()->back()->with("error","Akun Belum di Verifikasi, Hubungi Admin!");
-        }
-
-        if ($response['user']['roles'] == 'orangtua') {
-            return redirect()->back()->with("error","Akun Orang Tua Tidak Diberi Akses Masuk");
-        }
-
-        $nik = array_key_exists('nik',$response['user']) ? $response['user']['nik'] : '';
-        $posyandu_id = array_key_exists('posyandu', $response['user']) ? $response['user']['posyandu'] : '';
+        ])->json();
 
         if ($response['msg'] == 'success logon') {
+            if (!$response['user']['verifikasi']) {
+                return redirect()->back()->with("error","Akun Belum di Verifikasi, Hubungi Admin!");
+            }
+    
+            if ($response['user']['roles'] == 'orangtua') {
+                return redirect()->back()->with("error","Akun Orang Tua Tidak Diberi Akses Masuk");
+            }
+    
+            $nik = array_key_exists('nik',$response['user']) ? $response['user']['nik'] : '';
+            $posyandu_id = array_key_exists('posyandu', $response['user']) ? $response['user']['posyandu'] : '';
+
             $req->session()->put(['token_user' => $response['access_token']]);
             $req->session()->put(['name' => $response['user']['name']]);
             $req->session()->put(['roles' => $response['user']['roles']]);
