@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 use App\User;
+use GuzzleHttp\Psr7;
 class UserController extends Controller
 {
     public function login(Request $req){
@@ -76,7 +77,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
-            'roles' => 'required'
+            'roles' => 'required',
             // 'photo' => 'image|mimes:png,jpg,jpeg',
         ]);
 
@@ -134,19 +135,19 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required',
             // 'password' => 'required',
-            'roles' => 'required'
-            // 'photo' => 'image|mimes:png,jpg,jpeg',
+            'roles' => 'required',
+            'photo' => 'image|mimes:png,jpg,jpeg',
         ]);
 
-        // if ($req->photo) {
-        //     $file_path = $req->photo->getRealPath();
-        //     $file_name = $req->photo->getClientOriginalName();
-        //     $payload[] = [
-        //         'name' =>   'photo',
-        //         'filename' => $file_name,
-        //         'contents' => Psr7\Utils::tryFopen($file_path, 'r'),
-        //     ];
-        // }
+        if ($req->photo) {
+            $file_path = $req->photo->getRealPath();
+            $file_name = $req->photo->getClientOriginalName();
+            $payload[] = [
+                'name' =>   'photo',
+                'filename' => $file_name,
+                'contents' => Psr7\Utils::tryFopen($file_path, 'r'),
+            ];
+        }
 
         $payload[] = [
             "name" =>   "name",

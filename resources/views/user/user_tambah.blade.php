@@ -68,11 +68,6 @@
                         <option value="orangtua">Orang Tua</option>
                     </select>
                 </div>
-                {{-- <div class="form-group">
-                    <label for="nomor">Foto Thumbnail</label>
-                    <input type="file" name="photo" class="form-control">
-                </div>
-                 --}}
                 <button class="btn btn-primary active" style="border-radius:0;">Simpan</button>
             </form>
         </div>

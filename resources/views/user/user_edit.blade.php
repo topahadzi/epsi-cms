@@ -60,6 +60,10 @@
                     <label for="nomor">Password</label>
                     <input type="password" id="password" name="password" class="form-control" style="border:1px solid #f1f1f1;" >
                 </div>
+                <div class="form-group" id="thumb">
+                    <label for="nomor">Foto Thumbnail</label>
+                    <input type="file" name="photo" id="photo" class="form-control">
+                </div>
                 <div class="form-group">
                     <label for="nomor">Roles</label>
                     <select name="roles" class="form-control" id="roles">
@@ -68,10 +72,6 @@
                         <option value="orangtua">Orang Tua</option>
                     </select>
                 </div>
-                {{-- <div class="form-group" id="thumb">
-                    <label for="nomor">Foto Thumbnail</label>
-                    <input type="file" name="photo" id="photo" class="form-control">
-                </div> --}}
                 <input type="hidden" name="id" value="{{$id}}">
                 <button class="btn btn-primary active" style="border-radius:0;">Simpan</button>
             </form>
@@ -95,6 +95,7 @@ $(document).ready(function() {
             $('#name').val(data.user.name);
             $('#email').val(data.user.email);
             $('#roles').val(data.user.roles);
+            $('#thumb').append(`<img src="${data.user.photo}" style="width: 250px; margin: 20px 0px 0px 0px;">`);
         }
     });     
 });

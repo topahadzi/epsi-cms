@@ -9,7 +9,7 @@
             <p>Dashboard</p>
         </a>
     </li>
-    <li class="active">
+    <li class="">
         <a href="{{ route('berita') }}">
             <i class="fas fa-newspaper"></i>
             <p>Berita</p>
@@ -53,13 +53,13 @@
                     <input type="text" class="form-control" style="border:1px solid #f1f1f1;" name="name">
                 </div>
                 <div class="form-group">
+                    <label for="nomor">Foto Thumbnail</label>
+                    <input type="file" name="photo" class="form-control">
+                </div>
+                <div class="form-group">
                     <label for="nomor">Alamat Posyandu</label>
                     <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="5"></textarea>
                 </div>
-                {{-- <div class="form-group">
-                    <label for="nomor">Foto Thumbnail</label>
-                    <input type="file" name="photo" class="form-control">
-                </div> --}}
                 <button class="btn btn-primary active" style="border-radius:0;">Simpan</button>
             </form>
         </div>

@@ -55,7 +55,7 @@
                     <th>#</th>
                     <th>Nama</th>
                     <th>Alamat</th>
-                    {{-- <th>Thumbnail</th> --}}
+                    <th>Thumbnail</th>
                     <th width="30%">Aksi</th>
                 </thead>
             </table>
@@ -87,12 +87,12 @@ $(document).ready(function() {
             },
             { data: 'name' },
             { data: 'alamat' },
-            // {
-            //     "mData": "photo",
-            //     "mRender": function (data, type, row) {
-            //         return `<img src="${data}" style="width: 80px;">`
-            //     }
-            // },
+            {
+                "mData": "photo",
+                "mRender": function (data, type, row) {
+                    return `<img src="${data}" style="width: 80px;">`
+                }
+            },
             {
                 "mData": "_id",
                 "mRender": function (data, type, row) {

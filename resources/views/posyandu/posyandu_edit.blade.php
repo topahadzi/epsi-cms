@@ -9,7 +9,7 @@
             <p>Dashboard</p>
         </a>
     </li>
-    <li class="active">
+    <li class="">
         <a href="{{ route('berita') }}">
             <i class="fas fa-newspaper"></i>
             <p>Berita</p>
@@ -52,14 +52,14 @@
                     <label for="nomor">Nama Posyandu</label>
                     <input type="text" name="name" id="name" class="form-control" style="border:1px solid #f1f1f1;" >
                 </div>
+                <div class="form-group" id="thumb">
+                    <label for="nomor">Foto Thumbnail</label>
+                    <input type="file" name="photo" id="photo" class="form-control">
+                </div>
                 <div class="form-group">
                     <label for="nomor">Alamat Posyandu</label>
                     <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="5"></textarea>
                 </div>
-                {{-- <div class="form-group" id="thumb">
-                    <label for="nomor">Foto Thumbnail</label>
-                    <input type="file" name="photo" id="photo" class="form-control">
-                </div> --}}
                 <input type="hidden" name="id" value="{{$id}}">
                 <button class="btn btn-primary active" style="border-radius:0;">Simpan</button>
             </form>
@@ -81,6 +81,7 @@ $(document).ready(function() {
         },
         success: function (data) {
             $('#name').val(data.posyandu.name);
+            $('#thumb').append(`<img src="${data.posyandu.photo}" style="width: 250px; margin: 20px 0px 0px 0px;">`);
             $('#alamat').val(data.posyandu.alamat);
         }
     });     

@@ -56,6 +56,7 @@
                     <th>Nama</th>
                     <th>Email</th>
                     <th>Roles</th>
+                    <th>Photo</th>
                     <th>Verikasi</th>
                     <th width="30%">Aksi</th>
                 </thead>
@@ -97,6 +98,12 @@ $(document).ready(function() {
                 "mData": "roles",
                 "mRender": function (data, type, row, meta) {
                     return data != '' ? data : '';
+                }
+            },
+            {
+                "mData": "photo",
+                "mRender": function (data, type, row) {
+                    return `<img src="${data}" style="width: 80px;">`
                 }
             },
             {

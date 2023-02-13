@@ -20,19 +20,19 @@ class PosyanduController extends Controller
 
         $req->validate([
             'name' => 'required',
-            // 'photo' => 'image|mimes:png,jpg,jpeg',
+            'photo' => 'image|mimes:png,jpg,jpeg',
             'alamat' => 'required'
         ]);
 
-        // if ($req->photo) {
-        //     $file_path = $req->photo->getRealPath();
-        //     $file_name = $req->photo->getClientOriginalName();
-        //     $payload[] = [  
-        //         'name' =>   'photo',
-        //         'filename' => $file_name,
-        //         'contents' => Psr7\Utils::tryFopen($file_path, 'r'),
-        //     ];
-        // }
+        if ($req->photo) {
+            $file_path = $req->photo->getRealPath();
+            $file_name = $req->photo->getClientOriginalName();
+            $payload[] = [  
+                'name' =>   'photo',
+                'filename' => $file_name,
+                'contents' => Psr7\Utils::tryFopen($file_path, 'r'),
+            ];
+        }
      
         $payload[] = [
             "name" =>   "name",
@@ -53,7 +53,7 @@ class PosyanduController extends Controller
 
         $res = json_decode($response, true);
 
-        if ($res['msg'] === 'Success Posyandu') {
+        if ($res['msg'] === 'Success Create Posyandu') {
             return redirect('/posyandu')->with("success","Tambah Posyandu");
         } elseif ($res['msg'] === 'Posyandu Sudah Ada') {
             return redirect()->back()->with("error","Menambah Posyandu, Karena Sudah Ada");
@@ -69,19 +69,19 @@ class PosyanduController extends Controller
     public function update(Request $req){
         $req->validate([
             'name' => 'required',
-            // 'photo' => 'image|mimes:png,jpg,jpeg',
+            'photo' => 'image|mimes:png,jpg,jpeg',
             'alamat' => 'required'
         ]);
 
-        // if ($req->photo) {
-        //     $file_path = $req->photo->getRealPath();
-        //     $file_name = $req->photo->getClientOriginalName();
-        //     $payload[] = [
-        //         'name' =>   'photo',
-        //         'filename' => $file_name,
-        //         'contents' => Psr7\Utils::tryFopen($file_path, 'r'),
-        //     ];
-        // }
+        if ($req->photo) {
+            $file_path = $req->photo->getRealPath();
+            $file_name = $req->photo->getClientOriginalName();
+            $payload[] = [
+                'name' =>   'photo',
+                'filename' => $file_name,
+                'contents' => Psr7\Utils::tryFopen($file_path, 'r'),
+            ];
+        }
 
         $payload[] = [
             "name" =>   "name",
