@@ -19,6 +19,10 @@ class UserController extends Controller
             return redirect()->back()->with("error","Akun Belum di Verifikasi, Hubungi Admin!");
         }
 
+        if ($response['user']['roles'] == 'orangtua') {
+            return redirect()->back()->with("error","Akun Orang Tua Tidak Diberi Akses Masuk");
+        }
+
         $nik = array_key_exists('nik',$response['user']) ? $response['user']['nik'] : '';
         $posyandu_id = array_key_exists('posyandu', $response['user']) ? $response['user']['posyandu'] : '';
 

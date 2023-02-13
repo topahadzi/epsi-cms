@@ -44,6 +44,7 @@ class Controller extends BaseController
         ])->getBody()->getContents();
 
         if (json_decode($response, true)['msg'] === 'Success Update') {
+            $req->session()->put(['posyandu_id' => $req->posyandu]);
             return redirect('/')->with("success","Update Lokasi Posyandu");
         } else {
             return redirect()->back()->with("error","Update Lokasi Posyandu");
