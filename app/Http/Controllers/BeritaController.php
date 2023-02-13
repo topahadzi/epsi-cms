@@ -43,6 +43,10 @@ class BeritaController extends Controller
             'name' =>   'description',
             'contents' => $req->description,
         ];
+        $payload[] = [
+            'name' =>   'createdby',
+            'contents' => strval(session()->get('id_user')),
+        ];
 
         $client = new Client();
         $response = $client->post(config("app.api_url")."berita/create", [
@@ -87,6 +91,10 @@ class BeritaController extends Controller
         $payload[] = [
             'name' =>   'description',
             'contents' => $req->description,
+        ];
+        $payload[] = [
+            'name' =>   'createdby',
+            'contents' => strval(session()->get('id_user')),
         ];
 
         $client = new Client();
