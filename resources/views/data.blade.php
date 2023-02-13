@@ -60,15 +60,13 @@
                     </div>
                 </div>
                 <div class="col-xs-7">
-                    <div class="numbers">
+                    <div class="posyandu_name" style="text-align: right;">
                         <p>Posyandu</p>
-                        {{-- {{ $data->kereta }} --}}
                     </div>
                 </div>
             </div>
             <div class="footer text-right">
                 <hr />
-                {{-- <a href="{{ route('kereta') }}">Details</a> --}}
             </div>
         </div>
     </div>
@@ -83,15 +81,13 @@
                     </div>
                 </div>
                 <div class="col-xs-7">
-                    <div class="numbers">
+                    <div class="jumlah_ortu" style="text-align: right;">
                         <p>Jumlah Orang Tua</p>
-                        {{-- {{ $data->laporan }} --}}
                     </div>
                 </div>
             </div>
             <div class="footer text-right">
                 <hr />
-                {{-- <a href="{{ route('laporan') }}">Details</a> --}}
             </div>
         </div>
     </div>
@@ -127,4 +123,36 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section("js")
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: "{{config('app.api_url')}}"+"posyandu",
+            type: 'GET',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer {{session()->get("token_user")}}');
+            },
+            success: function (data) {
+                let dataFilter = data.posyandu.filter(function(pos) {
+                    return pos._id == "{{session()->get('posyandu_id')}}";
+                });
+                if (dataFilter.length != 0) {
+                    $('.posyandu_name').append(dataFilter[0].name);
+                }
+             }
+        });
+        $.ajax({
+            url: "{{config('app.api_url')}}"+"posyandu/orangtua/{{session()->get('posyandu_id')}}",
+            type: 'GET',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer {{session()->get("token_user")}}');
+            },
+            success: function (data) {
+                $('.jumlah_ortu').append(data.orangtua.length);
+             }
+        });
+    });
+    </script>
 @endsection

@@ -67,51 +67,55 @@
 @section("js")
 <script>
 $(document).ready(function() {
-    $('#table').DataTable({
-        ajax: {
-            url: "{{config('app.api_url')}}"+"posyandu/orangtua/{{session()->get('posyandu_id')}}",
-            type: "GET",
-            dataSrc: 'orangtua',
-            dataType: 'json',
-            contentType: "application/json",
-            headers: {
-                "Authorization": "Bearer {{session()->get('token_user')}}",
+    if ("{{session()->get('roles')}}" == "admin") {
+        $('#table').DataTable();
+    } else {
+        $('#table').DataTable({
+            ajax: {
+                url: "{{config('app.api_url')}}"+"posyandu/orangtua/{{session()->get('posyandu_id')}}",
+                type: "GET",
+                dataSrc: 'orangtua',
+                dataType: 'json',
+                contentType: "application/json",
+                headers: {
+                    "Authorization": "Bearer {{session()->get('token_user')}}",
+                },
             },
-        },
-        columns: [
-            {
-                "mData": "_id",
-                "mRender": function (data, type, row, meta) {
-                    return meta['row'] + 1;
+            columns: [
+                {
+                    "mData": "_id",
+                    "mRender": function (data, type, row, meta) {
+                        return meta['row'] + 1;
+                    }
+                },
+                {
+                    "mData": "name",
+                    "mRender": function (data, type, row, meta) {
+                        return data ? data : '';
+                    }
+                },
+                {
+                    "mData": "nik",
+                    "mRender": function (data, type, row, meta) {
+                        return data ? data : '';
+                    }
+                },
+                {
+                    "mData": "alamat",
+                    "mRender": function (data, type, row, meta) {
+                        return data ? data : '';
+                    }
+                },
+                {
+                    "mData": "_id",
+                    "mRender": function (data, type, row) {
+                        let detail = `{{ url('/rapot_anak/${data}') }}`;
+                        return `<a href="${detail}"  id="list_anak" class="btn btn-success active" style="border-radius:0;"><i class="fas fa-list"></i></a>`;
+                    }
                 }
-            },
-            {
-                "mData": "name",
-                "mRender": function (data, type, row, meta) {
-                    return data ? data : '';
-                }
-            },
-            {
-                "mData": "nik",
-                "mRender": function (data, type, row, meta) {
-                    return data ? data : '';
-                }
-            },
-            {
-                "mData": "alamat",
-                "mRender": function (data, type, row, meta) {
-                    return data ? data : '';
-                }
-            },
-            {
-                "mData": "_id",
-                "mRender": function (data, type, row) {
-                    let detail = `{{ url('/rapot_anak/${data}') }}`;
-                    return `<a href="${detail}"  id="list_anak" class="btn btn-success active" style="border-radius:0;"><i class="fas fa-list"></i></a>`;
-                }
-            }
-        ]
-    });
+            ]
+        });
+    }
 });
 
 </script>
