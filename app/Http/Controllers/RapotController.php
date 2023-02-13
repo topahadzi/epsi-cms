@@ -41,8 +41,6 @@ class RapotController extends Controller
         // menghitung selisih bulan
         $numBulan += date("m",$timeEnd)-date("m",$timeStart);
 
-        dd($numBulan);
-
         $req->validate([
             'tinggi_badan' => 'required',
             'berat_badan' => 'required'
