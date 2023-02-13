@@ -11,7 +11,7 @@ class UserController extends Controller
     public function login(Request $req){
         
         $response = Http::post(config("app.api_url")."signin", [
-            'email' => $req['username'],
+            'email' => $req['email'],
             'password' => $req['password'],
         ])->json();        
 
