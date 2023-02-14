@@ -136,7 +136,7 @@ class UserController extends Controller
             'email' => 'required',
             // 'password' => 'required',
             'roles' => 'required',
-            'photo' => 'image|mimes:png,jpg,jpeg',
+            // 'photo' => 'image|mimes:png,jpg,jpeg',
         ]);
 
         if ($req->photo) {

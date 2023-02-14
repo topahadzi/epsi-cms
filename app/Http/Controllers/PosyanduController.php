@@ -20,7 +20,7 @@ class PosyanduController extends Controller
 
         $req->validate([
             'name' => 'required',
-            'photo' => 'image|mimes:png,jpg,jpeg',
+            // 'photo' => 'image|mimes:png,jpg,jpeg',
             'alamat' => 'required'
         ]);
 
@@ -69,7 +69,7 @@ class PosyanduController extends Controller
     public function update(Request $req){
         $req->validate([
             'name' => 'required',
-            'photo' => 'image|mimes:png,jpg,jpeg',
+            // 'photo' => 'image|mimes:png,jpg,jpeg',
             'alamat' => 'required'
         ]);
 
