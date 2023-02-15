@@ -188,15 +188,15 @@ $(document).ready(function() {
             xhr.setRequestHeader('Authorization', 'Bearer {{session()->get("token_user")}}');
         },
         success: function (res) {
-            console.log(res);
-            let nama = `Raport ${res.rapor.length + 1} Bulan`;
-            $('#name_view').val(nama);
-            $('#name').val(nama);
-            $('#bulan').val(res.rapor.length + 1);
-
+            console.log(res);   
+            
             let newestRapor = res.rapor.filter(function (rpr) {
                 return rpr._id == "{{$id_rapor}}";
             });
+            let nama = `Raport ${newestRapor[0].bulan} Bulan`;
+            $('#name_view').val(nama);
+            $('#name').val(nama);
+            $('#bulan').val(newestRapor[0].bulan);
             let imunisasi = newestRapor[0].imunisasi[0];
             $('#tinggi_badan').val(newestRapor[0].tinggi_badan);
             $('#berat_badan').val(newestRapor[0].berat_badan);
