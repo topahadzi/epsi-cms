@@ -30,7 +30,7 @@
                   </div>
 
                   <div class="signin-form">
-                      <h2 class="form-title">Sign in</h2>
+                      <h2 class="form-title">Sign in Now</h2>
                       <form method="POST" class="register-form" action="{{ url('/login') }}" id="login">
                       {{csrf_field()}}
                           <div class="form-group">
