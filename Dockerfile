@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libwebp-dev \
     libfreetype6-dev \
+    libicu-dev \ 
     curl 
 
 # Clear cache
