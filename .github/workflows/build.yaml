@@ -59,3 +59,5 @@ jobs:
           KUBE_CONTEXT: "gke_woven-province-392609_asia-southeast2_skripsi-cluster"
         with:
           args: rollout status deployment/epsi-cms -n epsi
+      - name: waiiting for application healthy
+        run: sleep 300
