@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - "v*"
+    branches:
+      - "main"
 
 env:
   REGISTRY: ghcr.io
@@ -43,3 +45,9 @@ jobs:
           push: true
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+          KUBE_CONTEXT: "gke_woven-province-392609_asia-southeast2_skripsi-cluster"
+        with:
+          args: get pods -n epsi
