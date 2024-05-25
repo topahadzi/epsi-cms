@@ -46,7 +46,7 @@ jobs:
         with:
           platforms: linux/amd64
           push: true
-          tags:  ${{ env.IMAGE_NAME }}:dev-${{ steps.short-sha.outputs.sha }}
+          tags:  ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.short-sha.outputs.sha }}
       - uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
