@@ -52,4 +52,10 @@ jobs:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
           KUBE_CONTEXT: "gke_woven-province-392609_asia-southeast2_skripsi-cluster"
         with:
-          args: get pods -n epsi
+          args: set image deployment/epsi-cms epsi-cms=${{ env.REGISTRY }}/${{ secrets.DOCKER_IMAGE }}:${{ steps.short-sha.outputs.sha }} --record -n epsi
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+          KUBE_CONTEXT: "gke_woven-province-392609_asia-southeast2_skripsi-cluster"
+        with:
+          args: rollout status deployment/epsi-cms -n epsi
