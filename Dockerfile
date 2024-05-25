@@ -3,8 +3,17 @@ FROM php:8.1-apache as web
 
 # Install Additional System Dependencies
 RUN apt-get update && apt-get install -y \
+    mysql-client \
+    msmtp \
+    perl \
+    wget \
+    procps \
+    passwd \
     libzip-dev \
-    zip \ 
+    libpng-dev \
+    libjpeg-turbo8-dev \
+    libwebp-dev \
+    libfreetype6-dev \
     curl 
 
 # Clear cache
